@@ -1,0 +1,29 @@
+{
+  "compilerOptions": {
+    "rootDir": "./src",
+    "outDir": "./dist",
+
+    // --- CRITICAL CHANGES FOR NODE.JS BACKEND ---
+    "module": "node16",             
+    "moduleResolution": "node16",       
+    "target": "es2020",               
+    "esModuleInterop": true,          
+
+    "lib": ["es2020"],
+    "types": ["node"],
+
+    "sourceMap": true,
+    "declaration": true,
+
+    // --- STRICT TYPE CHECKING ---
+    "strict": true,
+    "noUncheckedIndexedAccess": true, 
+    "exactOptionalPropertyTypes": true,
+
+    // --- CLEANUP ---
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules"]
+}
