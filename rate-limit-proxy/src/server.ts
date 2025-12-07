@@ -4,19 +4,17 @@ import { ipRateLimitMiddleware, apiKeyRateLimitMiddleware } from './middleware';
 const app = express();
 app.use(express.json());
 
-// --- YOUR ARCHITECTURE FLOW ---
-
-// 1. IP Rate Limiting (DDoS prevention)
+// 1. IP Rate Limiting
 app.use(ipRateLimitMiddleware);
 
 // 2. API Key Rate Limiting (Usage Quotas)
 app.use(apiKeyRateLimitMiddleware);
 
-// 3. API Key Authentication (Mocked)
-// In real life, this checks your database to see if the key exists and is active.
+// 3. API Key Authentication 
+//  this checks your database to see if the key exists and is active.(example only)
 const authMiddleware = (req: express.Request, res: express.Response, next: express.NextFunction) => {
     const apiKey = req.headers['x-api-key'];
-    // Mock Database Check
+    
     if (apiKey === 'secure-server-key-123') {
         next(); // Authorized
     } else {
@@ -26,9 +24,9 @@ const authMiddleware = (req: express.Request, res: express.Response, next: expre
 
 app.use(authMiddleware);
 
-// 4. Authorization & Controller (The actual API call)
+// 4. Authorization & Controller 
 app.get('/api/resource', (req, res) => {
-    // Simulate complex processing
+   
     res.json({ data: 'This is protected data', timestamp: new Date() });
 });
 
